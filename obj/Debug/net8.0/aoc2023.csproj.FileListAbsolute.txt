@@ -1,0 +1,14 @@
+/Users/ryanheitmann/repos/personal/aoc2023/bin/Debug/net8.0/aoc2023
+/Users/ryanheitmann/repos/personal/aoc2023/bin/Debug/net8.0/aoc2023.deps.json
+/Users/ryanheitmann/repos/personal/aoc2023/bin/Debug/net8.0/aoc2023.runtimeconfig.json
+/Users/ryanheitmann/repos/personal/aoc2023/bin/Debug/net8.0/aoc2023.dll
+/Users/ryanheitmann/repos/personal/aoc2023/bin/Debug/net8.0/aoc2023.pdb
+/Users/ryanheitmann/repos/personal/aoc2023/obj/Debug/net8.0/aoc2023.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ryanheitmann/repos/personal/aoc2023/obj/Debug/net8.0/aoc2023.AssemblyInfoInputs.cache
+/Users/ryanheitmann/repos/personal/aoc2023/obj/Debug/net8.0/aoc2023.AssemblyInfo.cs
+/Users/ryanheitmann/repos/personal/aoc2023/obj/Debug/net8.0/aoc2023.csproj.CoreCompileInputs.cache
+/Users/ryanheitmann/repos/personal/aoc2023/obj/Debug/net8.0/aoc2023.dll
+/Users/ryanheitmann/repos/personal/aoc2023/obj/Debug/net8.0/refint/aoc2023.dll
+/Users/ryanheitmann/repos/personal/aoc2023/obj/Debug/net8.0/aoc2023.pdb
+/Users/ryanheitmann/repos/personal/aoc2023/obj/Debug/net8.0/aoc2023.genruntimeconfig.cache
+/Users/ryanheitmann/repos/personal/aoc2023/obj/Debug/net8.0/ref/aoc2023.dll
