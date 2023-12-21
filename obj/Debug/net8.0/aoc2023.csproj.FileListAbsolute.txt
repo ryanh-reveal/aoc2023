@@ -12,3 +12,4 @@
 /Users/ryanheitmann/repos/personal/aoc2023/obj/Debug/net8.0/aoc2023.pdb
 /Users/ryanheitmann/repos/personal/aoc2023/obj/Debug/net8.0/aoc2023.genruntimeconfig.cache
 /Users/ryanheitmann/repos/personal/aoc2023/obj/Debug/net8.0/ref/aoc2023.dll
+/Users/ryanheitmann/repos/personal/aoc2023/obj/Debug/net8.0/aoc2023.sourcelink.json

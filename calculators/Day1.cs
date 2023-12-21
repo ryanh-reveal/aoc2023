@@ -1,32 +1,38 @@
 namespace aoc2023
 {
-    public class Day1(int passedPart) : ICalculator
+    public class Day1 : ICalculator
     {
-        private string _contents = "";
-        private int _part;
-        public string contents { 
-            get {return _contents; }
-            set {
-            _contents = File.ReadAllText("/Users/ryanheitmann/repos/personal/aoc2023/data/day1.txt");
-        } }
+        private readonly int _part;
+        private readonly string _contents;
+        private readonly int _day;
 
-        public int part { 
-            get {return _part;} 
-            set {_part = passedPart; } 
-            }
+        public Day1()
+        {
+            _contents = "";
+        }
 
+        public Day1(int day, int part): this()
+        {
+            _part = part;
+            _day = day;
+            _contents = getSolutionData();
+        }
+
+        private string getSolutionData()
+        {
+            var path = Directory.GetFiles(Directory.GetCurrentDirectory(), $"day{_day}.txt", SearchOption.AllDirectories).FirstOrDefault();
+            return path != null ? File.ReadAllText(path) : "";
+        }
         public void Run()
         {
-
-            int sum = calcSum(contents, _part);   
+            int sum = calcSum(_contents, _part);   
             Console.WriteLine($"Day1, Part{_part}: {sum}");
-            
         }
 
         
         private int calcSum(string data, int part)
         {
-            bool checkWords = _part == 2 ? true : false;
+            bool checkWords = part == 2 ? true : false;
             var lines = data.Split("\n", StringSplitOptions.RemoveEmptyEntries);
             int runningSum = 0;
             int lineCounter = 1;

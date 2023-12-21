@@ -5,7 +5,12 @@ namespace aoc2023 {
         {
             int dayInt = int.Parse(day);
             int partInt = int.Parse(part);
-            ICalculator calculator = CalculatorFactory.CreateCalculator(dayInt, partInt);
+            ICalculator? calculator = CalculatorFactory.CreateCalculator(dayInt, partInt);
+            if (calculator is null)
+            {
+                Console.WriteLine("Invalid day or part");
+                return;
+            }
             calculator.Run();
         }
         
