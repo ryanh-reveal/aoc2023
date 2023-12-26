@@ -7,6 +7,8 @@ namespace aoc2023 {
                     return new Day1(day, part);
                 case 2:
                     return new Day2(day, part);
+                case 3:
+                    return new Day3(day, part);
                 default:
                     return null;
             }

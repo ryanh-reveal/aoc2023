@@ -1,54 +1,23 @@
 namespace aoc2023 {
-    public class Day2 : ICalculator 
+    public class Day2 : BaseCalculator 
     {
-        private readonly int _part;
-        private readonly string _contents;
-        private readonly int _day;
 
         public Day2()
         {
-            _contents = "";
         }
         public Day2(int day, int part): this()
         {
-            _part = part;
-            _day = day;
-            _contents = getSolutionData();
         }
 
-        private string getSolutionData()
-        {
-            var path = Directory.GetFiles(Directory.GetCurrentDirectory(), $"day{_day}.txt", SearchOption.AllDirectories).FirstOrDefault();
-            return path != null ? File.ReadAllText(path) : "";
-        }
-        public void Run()
+        public override void Run()
         {
             int sum = calcSum(_contents, _part);
-            Console.WriteLine($"Day2, Part{_part}: {sum}");
+            Console.WriteLine($"Day{_day}, Part{_part}: {sum}");
         }
 
         private int calcSum(string data, int part)
         {
             bool findMin = part == 2 ? true: false;
-            
-            var gameData = @"Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
-                        Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
-                        Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
-                        Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
-                        Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green";
-
-                        /*
-            In game 1, the game could have been played with as few as 4 red, 2 green, and 6 blue cubes. If any color had even one fewer cube, the game would have been impossible.
-            Game 2 could have been played with a minimum of 1 red, 3 green, and 4 blue cubes.
-            Game 3 must have been played with at least 20 red, 13 green, and 6 blue cubes.
-            Game 4 required at least 14 red, 3 green, and 15 blue cubes.
-            Game 5 needed no fewer than 6 red, 3 green, and 2 blue cubes in the bag.
-
-            powers of games = 48, 12, 1560, 630, 36
-            total power = 2286
-
-                        */
-
             return findMin ? getMinPower(data) : getValidGameIndexes(data);
         }
 
@@ -75,23 +44,49 @@ namespace aoc2023 {
 
         private int getMinPower(string data)
         {
-            throw new NotImplementedException();
-            // int runningSum = 0;
-            // var lines = data.Trim().Split("\n", StringSplitOptions.TrimEntries);
+            var lines = data.Trim().Split("\n", StringSplitOptions.TrimEntries);
+            int runningSum = 0;
+            foreach(var line in lines)
+            {
+                var minCubeCount = getGameMinCubeCount(line);
+                int gamePower = calculateGamePower(minCubeCount);
+                runningSum += gamePower;
+            }
 
-            // foreach(var line in lines)
-            // {
+            return runningSum;
+        }
 
-            //     bool validGame = checkGameFeasability(line);
-            //     if (validGame)
-            //     {
-            //         runningSum += currentGame;
+        private int calculateGamePower(Dictionary<string, int> minCubeCount)
+        {
+            int gamePower = 1;
+            minCubeCount.Values.ToList().ForEach(x => gamePower *= x);
+            return gamePower;
+        }
 
-            //     }
-            //     currentGame++;
-            // }
-
-            // return runningSum;
+        private Dictionary<string, int> getGameMinCubeCount(string line)
+        {
+            Dictionary<string, int> cubeTracker = new Dictionary<string, int>(){
+                    {"red", 0},
+                    {"green", 0},
+                    {"blue", 0}
+                };
+            var rounds = parseRounds(line);
+            foreach(var round in rounds)
+            {
+                var hands = parseHands(round);
+                foreach(var hand in hands)
+                {
+                    var handData = hand.Split(" ");
+                    var color = handData[1];
+                    var count = handData[0];
+                    var parsedCount = Int32.Parse(count);
+                    if (parsedCount > cubeTracker[color])
+                    {
+                        cubeTracker[color] = parsedCount;
+                    }
+                }
+            }
+            return cubeTracker;
         }
 
         private bool checkGameFeasability(string line)
@@ -99,9 +94,7 @@ namespace aoc2023 {
             bool validGame = false;
             int roundCount = 0;
 
-            // chop Game X
-            var gameStats = line.Trim().Split(":", StringSplitOptions.TrimEntries)[1];
-            var games = gameStats.Trim().Split(";", StringSplitOptions.TrimEntries);
+            var games = parseRounds(line);
 
             foreach (var game in games)
             {
@@ -147,12 +140,12 @@ namespace aoc2023 {
             };
             string[] colors = ["red", "green", "blue"];
             // split on ,
-            var data = round.Trim().Split(",", StringSplitOptions.TrimEntries);
-            foreach(var item in data)
+            var hands = parseHands(round);
+            foreach(var hand in hands)
             {
-                var itemData = item.Split(" ");
-                var color = itemData[1];
-                var count = itemData[0];
+                var roundData = hand.Split(" ");
+                var color = roundData[1];
+                var count = roundData[0];
                 var parsedCount = Int32.Parse(count);
                 rgbTracker[color] += parsedCount;
             }
@@ -182,6 +175,18 @@ namespace aoc2023 {
                 colorCheck++;
             }
             return isValid;
+        }
+
+        private string[] parseRounds(string line)
+        {
+            var gameStats = line.Trim().Split(":", StringSplitOptions.TrimEntries)[1];
+            var games = gameStats.Trim().Split(";", StringSplitOptions.TrimEntries);
+            return games;
+        }
+
+        private string[] parseHands(string round)
+        {
+            return round.Trim().Split(",", StringSplitOptions.TrimEntries);
         }
     }
 }

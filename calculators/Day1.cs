@@ -1,32 +1,19 @@
 namespace aoc2023
 {
-    public class Day1 : ICalculator
+    public class Day1 : BaseCalculator
     {
-        private readonly int _part;
-        private readonly string _contents;
-        private readonly int _day;
-
-        public Day1()
+        Day1() : base()
         {
             _contents = "";
         }
-
-        public Day1(int day, int part): this()
+        public Day1(int day, int part) : base(day, part)
         {
-            _part = part;
-            _day = day;
-            _contents = getSolutionData();
         }
 
-        private string getSolutionData()
-        {
-            var path = Directory.GetFiles(Directory.GetCurrentDirectory(), $"day{_day}.txt", SearchOption.AllDirectories).FirstOrDefault();
-            return path != null ? File.ReadAllText(path) : "";
-        }
-        public void Run()
+        public override void Run()
         {
             int sum = calcSum(_contents, _part);   
-            Console.WriteLine($"Day1, Part{_part}: {sum}");
+            Console.WriteLine($"Day{day}, Part{_part}: {sum}");
         }
 
         
