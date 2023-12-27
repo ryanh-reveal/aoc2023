@@ -5,7 +5,7 @@ namespace aoc2023
     public class Day3 : BaseCalculator
     {
 
-        public Day3(): base()
+        public Day3()
         {
         }
 
@@ -15,17 +15,6 @@ namespace aoc2023
 
         public override void Run()
         {
-            string testData = @"467..114..
-...*......
-..35..633.
-......#...
-617*......
-.....+.58.
-..592.....
-......755.
-...$.*....
-.664.598..";
-//467835
             int sum = getSolution(_contents, _part);
             Console.WriteLine($"Day{_day}, Part{_part}: {sum}");
         }
