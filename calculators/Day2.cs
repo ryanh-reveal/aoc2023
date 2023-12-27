@@ -2,10 +2,10 @@ namespace aoc2023 {
     public class Day2 : BaseCalculator 
     {
 
-        public Day2()
+        Day2() : base()
         {
         }
-        public Day2(int day, int part): this()
+        public Day2(int day, int part): base(day, part)
         {
         }
 

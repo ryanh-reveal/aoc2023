@@ -4,16 +4,15 @@ namespace aoc2023
     {
         Day1() : base()
         {
-            _contents = "";
         }
-        public Day1(int day, int part) : base(day, part)
+        public Day1(int day, int part): base(day, part)
         {
         }
 
         public override void Run()
         {
             int sum = calcSum(_contents, _part);   
-            Console.WriteLine($"Day{day}, Part{_part}: {sum}");
+            Console.WriteLine($"Day{_day}, Part{_part}: {sum}");
         }
 
         
