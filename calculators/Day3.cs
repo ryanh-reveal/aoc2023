@@ -52,13 +52,11 @@ namespace aoc2023
                     || numberHasAdjacentSymbols(number, previousSymbolIndexes) 
                     || numberHasAdjacentSymbols(number, nextSymbolIndexes))
                     {
-                        // System.Console.WriteLine($"Found number: {getNumberFromIndexes(number, currentLine)}");
                         runningSum += getNumberFromIndexes(number, currentLine);
                     }
                     else
                     {
-
-                        System.Console.WriteLine($"Did not find number: {getNumberFromIndexes(number, currentLine)}, Line: {lineCounter}");
+                        Console.WriteLine($"Did not find number: {getNumberFromIndexes(number, currentLine)}, Line: {lineCounter}");
                     }
                     
                 }

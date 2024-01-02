@@ -8,5 +8,4 @@ internal class Program
     {
         Solution.Run(args[0], args[1]);
     }
-
 }

@@ -2,18 +2,15 @@ namespace aoc2023 {
     public static class CalculatorFactory {
         public static ICalculator? CreateCalculator(int day, int part)
         {
-            switch (day) {
-                case 1:
-                    return new Day1(day, part);
-                case 2:
-                    return new Day2(day, part);
-                case 3:
-                    return new Day3(day, part);
-                case 4:
-                    return new Day4(day, part);
-                default:
-                    return null;
-            }
+            return day switch
+            {
+                1 => new Day1(day, part),
+                2 => new Day2(day, part),
+                3 => new Day3(day, part),
+                4 => new Day4(day, part),
+                5 => new Day5(day, part),
+                _ => null,
+            };
         }
     }
 }

@@ -7,17 +7,12 @@ namespace aoc2023 {
             {
                 int dayInt = int.Parse(day);
                 int partInt = int.Parse(part);
-                ICalculator? calculator = CalculatorFactory.CreateCalculator(dayInt, partInt);
-                if (calculator is null)
-                {
-                    Console.WriteLine("Invalid day or part");
-                    return;
-                }
+                ICalculator? calculator = CalculatorFactory.CreateCalculator(dayInt, partInt) ?? throw new Exception("Invalid day or part, must enter two numbers ie: '1 2'");
                 calculator.Run();
             }
-            catch (System.Exception)
+            catch (Exception e)
             {
-                Console.WriteLine("Invalid day or part, must enter two numbers ie: '1 2'");
+                Console.WriteLine(e.Message);
             }
 
         }
